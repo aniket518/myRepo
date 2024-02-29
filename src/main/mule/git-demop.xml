@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="7a2859db-1884-446b-9b8b-90477a40fcf2" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="git-demopFlow" doc:id="b0e4dd7e-5bc4-451e-b7d7-6ce3c8722807" >
+		<http:listener doc:name="Listener" doc:id="b43091d4-99da-42aa-a212-81ec86cc983c" config-ref="HTTP_Listener_config" path="/git"/>
+		<logger level="INFO" doc:name="Logger" doc:id="18a15e4b-4014-4466-89c4-928c976eb3d1" message='#["flow name " ++ (flow.name as String)]'/>
+		<logger level="INFO" doc:name="Logger" doc:id="5eae114c-6bc9-46a9-9b29-38df230a449a" message='#["This is just for test purpose"]'/>
+		<set-payload value='#["Setting up the payload with dummy data"]' doc:name="Set Payload" doc:id="2a2edd38-4e1a-4128-9932-b2c1c48c153b" />
+	</flow>
+</mule>
